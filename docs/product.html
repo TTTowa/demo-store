@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+</head>
+<body>
+    <div id="product-details">
+        <!-- Product details will be populated here -->
+    </div>
+
+    <script>
+        function getUrlParams(url) {
+            const params = {};
+            const urlParams = new URLSearchParams(url.split('?')[1]);
+            for (const [key, value] of urlParams) {
+                params[key] = value;
+            }
+            return params;
+        }
+
+        // Get URL parameters
+        const url = window.location.href;
+        const params = getUrlParams(url);
+
+        // Generate product page based on parameters
+        const productDetailsDiv = document.getElementById("product-details");
+        const productId = params["id"];
+        const category = params["category"];
+        const subcategory = params["subcategory"];
+
+        const productDetails = `
+            <h2>Product Details</h2>
+            <p>ID: ${productId}</p>
+            <p>Category: ${category}</p>
+            <p>Subcategory: ${subcategory}</p>
+            <!-- Add more product details here -->
+        `;
+        productDetailsDiv.innerHTML = productDetails;
+    </script>
+</body>
+</html>

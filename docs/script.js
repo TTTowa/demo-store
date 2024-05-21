@@ -135,7 +135,7 @@ class ProductManager {
 
         const star = document.createElement('div');
         star.classList.add('star');
-        star.style.setProperty("--star", "1");
+        star.style.setProperty("--star", productData.star);
 
         const h3 = document.createElement('h3');
         h3.textContent = productData.name;
