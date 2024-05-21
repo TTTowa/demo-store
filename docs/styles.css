@@ -36,9 +36,9 @@ nav ul li a {
     transition: color 0.3s;
 }
 
-nav ul li a:hover {
+/* nav ul li a:hover {
     color: #ddd;
-}
+} */
 
 .header-icons {
     display: flex;
@@ -58,9 +58,9 @@ nav ul li a:hover {
     transition: background-color 0.3s;
 }
 
-.header-icons .icon:hover {
+/* .header-icons .icon:hover {
     background-color: #ddd;
-}
+} */
 
 /* バナー */
 .banner {
@@ -69,15 +69,14 @@ nav ul li a:hover {
     background: #f4f4f4;
 }
 
-/* 商品セクション */
 .products {
     padding: 20px;
 }
 
 .product-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     justify-content: center;
 }
 
@@ -89,10 +88,10 @@ nav ul li a:hover {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.product:hover {
+/* .product:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
+} */
 
 .product img {
     max-width: 100%;
@@ -119,9 +118,9 @@ nav ul li a:hover {
     border-radius: 5px;
 }
 
-.product button:hover {
+/* .product button:hover {
     background-color: #45a049;
-}
+} */
 
 /* フッター */
 footer {
@@ -144,9 +143,9 @@ footer {
     transition: color 0.3s;
 }
 
-.footer-links a:hover, .social-media a:hover {
+/* .footer-links a:hover, .social-media a:hover {
     color: #ddd;
-}
+} */
 
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
