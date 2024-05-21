@@ -161,7 +161,7 @@ footer {
 } */
 
 /* レスポンシブデザイン */
-@media (max-width: 768px) {
+@media (max-width: 880px) {
     nav ul, .header-icons .icon {
         display: none;
     }
