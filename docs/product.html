@@ -4,12 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="product.css">
 </head>
 <body>
-    <div id="product-details">
-        <!-- Product details will be populated here -->
+    <header>
+        <div class="logo">ストア</div>
+        <nav>
+            <ul>
+                <li class="home-link"><a href="#">ホーム</a></li>
+                <li><a href="#">商品一覧</a></li>
+                <li><a href="#">セール</a></li>
+                <li><a href="#">新商品</a></li>
+                <li><a href="#">お問い合わせ</a></li>
+            </ul>
+        </nav>
+        <div class="header-icons">
+            <input type="text" placeholder="検索...">
+            <a href="#" class="icon">カート</a>
+            <a href="#" class="icon">アカウント</a>
+        </div>
+    </header>
+    <div class="product-container">
+        <div class="product-image">
+            <img src="product_image.jpg" alt="Product Image" id="product-image">
+        </div>
+        <div class="product-details">
+            <h1 class="product-name" id="product-name">Product Name</h1>
+            <p class="product-price" id="product-price">$99.99</p>
+            <p class="product-description" id="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget semper arcu. Nulla eget libero euismod, feugiat felis nec, vehicula libero.</p>
+            <div class="product-rating">
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+                <span class="rating-count" id="rating-count">(1234 レビュー)</span>
+            </div>
+            <ul class="product-specs" id="product-specs">
+                <li>Color: Black</li>
+                <li>Size: Medium</li>
+                <li>Weight: 1.5 lbs</li>
+                <!-- Add more specifications here -->
+            </ul>
+            <div class="buy-options">
+                <select name="color" id="color">
+                    <option value="black">Black</option>
+                    <option value="white">White</option>
+                    <!-- Add more color options here -->
+                </select>
+                <select name="size" id="size">
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                    <!-- Add more size options here -->
+                </select>
+                <button class="add-to-cart">カートに追加</button>
+            </div>
+        </div>
     </div>
 
+    <div class="related-products">
+        <h2>関連商品</h2>
+        <ul>
+            <li><a href="#">Related Product 1</a></li>
+            <li><a href="#">Related Product 2</a></li>
+            <li><a href="#">Related Product 3</a></li>
+            <!-- Add more related products here -->
+        </ul>
+    </div>
+    <script src="product_data.js"></script>
     <script>
         function getUrlParams(url) {
             const params = {};
@@ -24,20 +88,16 @@
         const url = window.location.href;
         const params = getUrlParams(url);
 
+        const productImageElement = document.getElementById('product-image');
+
         // Generate product page based on parameters
         const productDetailsDiv = document.getElementById("product-details");
-        const productId = params["id"];
         const category = params["category"];
         const subcategory = params["subcategory"];
+        const productId = params["id"];
+        productImageElement.src = `./img/${category}-${subcategory}-${productId}.jpg`;
+        const productData = this.productData[category]?.[subcategory]?.find(obj => obj.productId === productId) || null;
 
-        const productDetails = `
-            <h2>Product Details</h2>
-            <p>ID: ${productId}</p>
-            <p>Category: ${category}</p>
-            <p>Subcategory: ${subcategory}</p>
-            <!-- Add more product details here -->
-        `;
-        productDetailsDiv.innerHTML = productDetails;
     </script>
 </body>
 </html>
