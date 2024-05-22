@@ -119,6 +119,6 @@ function generateRandomProductInfo(count, seed="1245") {
     return result;
 }
 
-productManager.addProducts(generateRandomProductInfo(10, seed="1234"), productList);
+productManager.addProducts(generateRandomProductInfo(50, seed=(new Date()).getTime()), productList);
 
 
