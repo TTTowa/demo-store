@@ -464,24 +464,7 @@ background-color: #3f8d42;
     display: none;
   }
   
-  .tab-bar::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .tab-bar::-webkit-scrollbar-track {
-    display: none;
 
-  }
-  
-  .tab-bar::-webkit-scrollbar-thumb {
-    display: none;
-
-  }
-  
-  .tab-bar::-webkit-scrollbar-thumb:hover {
-    display: none;
-
-  }
 
 
   .category-text {
