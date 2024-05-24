@@ -212,7 +212,7 @@ var swiper = new Swiper(".mySwiper", {
   });
 paginator.updatePage();
 
-const categoryTitle = document.getElementById('category-title');
+const categoryTitle = document.querySelector('#mainProducts #category-title');
 
 
 function handleChange(element){
@@ -222,10 +222,6 @@ function handleChange(element){
     } else {
         const data = product_data[category]
         categoryTitle.textContent = category_data[category]?.display_name || 'エラー';
-        // totalItems = totalItems;
-        // totalItemsLength = totalItems.length;
-        // itemsPerPage = itemsPerPage;
-        // currentPage = 1;
         var numbers = [];
         for (var row in data) {
             for (var column in data[row]) {
@@ -297,4 +293,22 @@ if (leastData.length === 0) {
   
     const paginator_least = new Paginator(leastData, 3, itemsContainerLeast, topElementLeast, pageInfoLeast);
     paginator_least.updatePage();
+}
+function searchByName(data, searchString) {
+    searchString = searchString.toLowerCase();
+    let results = [];
+    for (let key in data) {
+        if (data[key].name.toLowerCase().includes(searchString)) {
+            results.push(key);
+        }
+    }
+    return results;
+}
+function search(value) {
+    if (value === '') {
+        return;
+    }
+    let searchResults = searchByName(flatObjectData, value);
+    categoryTitle.textContent = 'search: '+value;
+    paginator.reset(searchResults);
 }
