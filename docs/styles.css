@@ -74,7 +74,8 @@ header .logo a {
     padding: 20px;
 }
 
-.product-list {
+.product-list,
+.product-list-l {
     display: grid;
     gap: 10px;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

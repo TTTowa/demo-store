@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOTOMIYA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <link rel="stylesheet" href="styles.css?2">
+    <style>
+        main {
+    padding: 2rem;
+}
+
+.qa-section {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.qa-item {
+    margin-bottom: 1.5rem;
+}
+
+.qa-item h2 {
+    color: #007bff;
+    font-size: 1.2rem;
+}
+
+.qa-item p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">MOTOMIYA<a href="./"></a></div>
+        <div class="header-icons">
+            <input type="text" placeholder="検索...">
+            <div class="mypage">Me</div>
+        </div>
+    </header>
+
+    <input type="checkbox" id="button-nav">
+    <label for="button-nav" class="navi-label"></label>
+    <div class="sidenav">
+        <div class="title">MOTOMIYA</div>
+        <div class="menu">
+            <div class="menu-item"><a href="profile.html">プロフィール</a></div>
+            <div class="menu-item" id="point"><div>保有ポイント</div><div>500p</div></div>
+            <div class="menu-item"><a href="cart.html">カート</a></div>
+            <div class="menu-item"><a href="recent.html">最近見たもの</a></div>
+            <div class="menu-item"><a href="qanda.html">Q&A</a></div>
+            <div class="menu-item"><a href="ranking.html">ランキング</a></div>
+            <div class="menu-item"><a href="subscription.html">定期便</a></div>
+            <div class="menu-item"><a href="jobs.html">求人</a></div>
+            <div class="menu-item"><a href="about.html">私たちについて</a></div>
+            <div class="menu-item"><a href="access.html">アクセス数</a></div>
+            <div class="menu-item" id="sns">
+                <a href="https://twitter.com/share?url=https://tttowa.github.io/demo-store/&hashtags=demo&text=ストアのデモサイトです！" rel="nofollow" target="_blank" id="x"></a>
+                <a href="http://line.me/R/msg/text/?https://tttowa.github.io/demo-store/%0aストアのデモサイトです！" target="_blank" rel="nofollow noopener" id="line"></a>
+                <a href="https://www.instagram.com/ユーザー名?ref=badge" target="_blank" rel="nofollow noopener" id="instagram"></a>
+            </div>
+        </div>
+    </div>
+    <main>
+        <section class="qa-section">
+            <div class="qa-item">
+                <h2>Q1: 営業時間は何時から何時までですか？</h2>
+                <p>A1: 平日は午前9時から午後9時まで、土日は午前10時から午後8時まで営業しています。</p>
+            </div>
+            <div class="qa-item">
+                <h2>Q2: クレジットカードは使えますか？</h2>
+                <p>A2: はい、主要なクレジットカード（VISA、MasterCard、AMEXなど）がご利用いただけます。</p>
+            </div>
+            <div class="qa-item">
+                <h2>Q3: オンラインで注文できますか？</h2>
+                <p>A3: はい、当店のウェブサイトからオンライン注文が可能です。配達も行っています。</p>
+            </div>
+            <div class="qa-item">
+                <h2>Q4: 駐車場はありますか？</h2>
+                <p>A4: はい、無料の駐車場をご用意しています。</p>
+            </div>
+            <div class="qa-item">
+                <h2>Q5: 処方箋薬は取り扱っていますか？</h2>
+                <p>A5: はい、処方箋薬も取り扱っております。処方箋をお持ちください。</p>
+            </div>
+            <div class="qa-item">
+                <h2>Q6: 返品・交換はできますか？</h2>
+                <p>A6: 未使用・未開封の商品に限り、購入日から14日以内であれば返品・交換が可能です。レシートをお持ちください。</p>
+            </div>
+            <div class="qa-item">
+                <h2>Q7: ポイントカードはありますか？</h2>
+                <p>A7: はい、ポイントカードをご用意しています。お買い上げ金額に応じてポイントが貯まります。</p>
+            </div>
+            <div class="qa-item">
+                <h2>Q8: 定期購読サービスはありますか？</h2>
+                <p>A8: はい、定期購読サービスをご利用いただけます。詳しくは店頭でお尋ねください。</p>
+            </div>
+            <div class="qa-item">
+                <h2>Q9: 商品の取り置きはできますか？</h2>
+                <p>A9: はい、商品のお取り置きが可能です。お電話または店頭でお申し込みください。</p>
+            </div>
+            <div class="qa-item">
+                <h2>Q10: お問い合わせ先はどこですか？</h2>
+                <p>A10: お問い合わせはお電話（012-345-6789）またはメール（info@example.com）で受け付けております。</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <p>tel: xxx-xxx-xxx</p>
+            <p>e-mail: xxxx.xxxx.xxx@xxx.xx.xx</p>
+            <p>address: xxx xxx xxx xxx</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="product_data.js"></script>
+    <script src="script.js?2"></script>
+</body>
+
+</html>

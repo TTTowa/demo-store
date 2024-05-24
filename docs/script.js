@@ -236,3 +236,111 @@ function handleChange(element){
         paginator.reset(numbers);
     }
 }
+
+
+
+
+class CookieCacheManager {
+    constructor(maxEntries) {
+      this.maxEntries = maxEntries;
+    }
+  
+    // Cookieにデータを設定
+    setItem(key, value, days) {
+      let expires = "";
+      if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+      const valueToStore = Array.isArray(value) ? JSON.stringify(value) : value;
+      document.cookie = key + "=" + (valueToStore || "") + expires + "; path=/";
+    }
+  
+    // Cookieからデータを取得
+    getItem(key) {
+      const nameEQ = key + "=";
+      const ca = document.cookie.split(';');
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) {
+          const value = c.substring(nameEQ.length, c.length);
+          try {
+            return JSON.parse(value);
+          } catch (e) {
+            return value;
+          }
+        }
+      }
+      return null;
+    }
+  
+    // Cookieからデータを削除
+    removeItem(key) {
+      document.cookie = key + '=; Max-Age=-99999999;';
+    }
+  
+    // Cookieが存在するかチェック
+    hasItem(key) {
+      return this.getItem(key) !== null;
+    }
+  
+    // 配列にエントリを追加
+    addToArray(key, entry, days) {
+      let array = this.getItem(key);
+      if (!Array.isArray(array)) {
+        array = [];
+      }
+      array = array.filter(item => item !== entry); // 重複を削除
+      array.push(entry);
+      if (array.length > this.maxEntries) {
+        array = array.slice(-this.maxEntries); // 最大エントリ数を超えたら古いものを削除
+      }
+      this.setItem(key, array, days);
+    }
+  
+    // カンマ区切りの数字を保存
+    addCommaSeparatedNumbers(key, numbers, days) {
+      let existingNumbers = this.getItem(key);
+      if (!existingNumbers) {
+        existingNumbers = "";
+      }
+      let newNumbers = existingNumbers ? existingNumbers.split(',').map(Number) : [];
+      numbers.forEach(number => {
+        newNumbers = newNumbers.filter(num => num !== number); // 重複を削除
+        newNumbers.push(number);
+      });
+      if (newNumbers.length > this.maxEntries) {
+        newNumbers = newNumbers.slice(-this.maxEntries); // 最大エントリ数を超えたら古いものを削除
+      }
+      this.setItem(key, newNumbers.join(','), days);
+    }
+  }
+  
+  // 使用例
+  
+
+  const cacheManager = new CookieCacheManager(5);
+  
+  
+  const numbers = cacheManager.getItem('numbers');
+
+  function removeDuplicatesFromCommaSeparatedString(commaSeparatedStr) {
+    if (!commaSeparatedStr) {
+      return "";
+    }
+
+    let array = commaSeparatedStr.split(',').map(Number);
+
+    let uniqueArray = [...new Set(array)];
+
+    return uniqueArray;
+  }
+
+  const itemsContainerLeast = document.querySelector('.product-list-l');
+  const pageInfoLeast = document.getElementById('page-info-l');
+  const topElementLeast = document.getElementById('leastProducts');
+
+  const paginator_least = new Paginator(removeDuplicatesFromCommaSeparatedString(numbers), 3, itemsContainerLeast, topElementLeast, pageInfoLeast);
+  paginator_least.updatePage();
