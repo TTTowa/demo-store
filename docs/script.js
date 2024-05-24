@@ -102,7 +102,14 @@ class Paginator {
         this.renderPageInfo();
     };
     scrollToProductsSection() {
-            this.topElement.scrollIntoView({ behavior: 'smooth' });
+        const margin = 50; // 設定したいマージンの値（ピクセル）
+        const elementPosition = this.topElement.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - margin;
+    
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
     }
 }
 
@@ -218,6 +225,7 @@ const categoryTitle = document.querySelector('#mainProducts #category-title');
 function handleChange(element){
     const category = element.dataset.category;
     if (category === 'all') {
+        categoryTitle.textContent = 'すべて';
         paginator.reset(generateRandomProductInfo(seed=generateHourlySeed()));
     } else {
         const data = product_data[category]
@@ -305,10 +313,19 @@ function searchByName(data, searchString) {
     return results;
 }
 function search(value) {
-    if (value === '') {
+    if (value == '') {
+        categoryTitle.textContent = 'すべて';
+        paginator.reset(generateRandomProductInfo(seed=generateHourlySeed()));
+        document.querySelector('.tab-bar #tabAll').checked = true;
         return;
     }
+    uncheckAll();
     let searchResults = searchByName(flatObjectData, value);
     categoryTitle.textContent = 'search: '+value;
     paginator.reset(searchResults);
+}
+function uncheckAll() {
+    const targetElement = document.querySelector('.tab-bar');
+    const checkboxes = targetElement.querySelectorAll('input[type="radio"]');
+    checkboxes.forEach(checkbox => checkbox.checked = false);
 }
