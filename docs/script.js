@@ -288,7 +288,8 @@ function pushToArrayInCookieNoDuplicates(cookieName, newEntry, maxEntries, days)
 const leastData = getArrayFromCookie("least");
 
 if (leastData.length === 0) {
-
+    const el = document.querySelector('#leastProducts #category-title');
+    el.style.display = 'none'
 } else {
     const itemsContainerLeast = document.querySelector('.product-list-l');
     const pageInfoLeast = document.getElementById('page-info-l');
