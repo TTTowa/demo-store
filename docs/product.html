@@ -24,7 +24,10 @@
         <div class="title">MOTOMIYA</div>
         <div class="menu">
             <div class="menu-item"><a href="profile.html">プロフィール</a></div>
-            <div class="menu-item" id="point"><div>保有ポイント</div><div>500p</div></div>
+            <div class="menu-item" id="point">
+                <div>保有ポイント</div>
+                <div>500p</div>
+            </div>
             <div class="menu-item"><a href="cart.html">カート</a></div>
             <div class="menu-item"><a href="recent.html">最近見たもの</a></div>
             <div class="menu-item"><a href="qa.html">Q&A</a></div>
@@ -34,9 +37,12 @@
             <div class="menu-item"><a href="about.html">私たちについて</a></div>
             <div class="menu-item"><a href="access.html">アクセス数</a></div>
             <div class="menu-item" id="sns">
-                <a href="https://twitter.com/share?url=https://tttowa.github.io/demo-store/&hashtags=demo&text=ストアのデモサイトです！" rel="nofollow" target="_blank" id="x"></a>
-                <a href="http://line.me/R/msg/text/?https://tttowa.github.io/demo-store/%0aストアのデモサイトです！" target="_blank" rel="nofollow noopener" id="line"></a>
-                <a href="https://www.instagram.com/ユーザー名?ref=badge" target="_blank" rel="nofollow noopener" id="instagram"></a>
+                <a href="https://twitter.com/share?url=https://tttowa.github.io/demo-store/&hashtags=demo&text=ストアのデモサイトです！"
+                    rel="nofollow" target="_blank" id="x"></a>
+                <a href="http://line.me/R/msg/text/?https://tttowa.github.io/demo-store/%0aストアのデモサイトです！" target="_blank"
+                    rel="nofollow noopener" id="line"></a>
+                <a href="https://www.instagram.com/ユーザー名?ref=badge" target="_blank" rel="nofollow noopener"
+                    id="instagram"></a>
             </div>
         </div>
     </div>
@@ -130,89 +136,56 @@
         const categoryDisplayName = categoryInfo.display_name;
         const subcategoryDisplayName = categoryInfo.sub[productData.subcategory];
         category.textContent = `${categoryDisplayName} > ${subcategoryDisplayName}`;
-
-        class CookieCacheManager {
-    constructor(maxEntries) {
-      this.maxEntries = maxEntries;
-    }
-  
-
-    setItem(key, value, days) {
-      let expires = "";
-      if (days) {
-        const date = new Date();
+        function setCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+        let date = new Date();
         date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
         expires = "; expires=" + date.toUTCString();
-      }
-      const valueToStore = Array.isArray(value) ? JSON.stringify(value) : value;
-      document.cookie = key + "=" + (valueToStore || "") + expires + "; path=/";
     }
-  
-    // Cookieからデータを取得
-    getItem(key) {
-      const nameEQ = key + "=";
-      const ca = document.cookie.split(';');
-      for (let i = 0; i < ca.length; i++) {
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+function getCookie(name) {
+    let nameEQ = name + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
         let c = ca[i];
         while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) === 0) {
-          const value = c.substring(nameEQ.length, c.length);
-          try {
-            return JSON.parse(value);
-          } catch (e) {
-            return value;
-          }
-        }
-      }
-      return null;
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
     }
-  
-    // Cookieからデータを削除
-    removeItem(key) {
-      document.cookie = key + '=; Max-Age=-99999999;';
-    }
-  
-    // Cookieが存在するかチェック
-    hasItem(key) {
-      return this.getItem(key) !== null;
-    }
-  
-    // 配列にエントリを追加
-    addToArray(key, entry, days) {
-      let array = this.getItem(key);
-      if (!Array.isArray(array)) {
-        array = [];
-      }
-      array = array.filter(item => item !== entry); // 重複を削除
-      array.push(entry);
-      if (array.length > this.maxEntries) {
-        array = array.slice(-this.maxEntries); // 最大エントリ数を超えたら古いものを削除
-      }
-      this.setItem(key, array, days);
-    }
-  
-    // カンマ区切りの数字を保存
-    addCommaSeparatedNumbers(key, numbers, days) {
-  let existingNumbers = this.getItem(key);
-  if (!existingNumbers) {
-    existingNumbers = "";
-  }
-  let newNumbers = existingNumbers ? existingNumbers.split(',').map(Number) : [];
-  numbers.forEach(number => {
-    if (!newNumbers.includes(number)) { // 重複を避ける
-      newNumbers.push(number);
-    }
-  });
-  if (newNumbers.length > this.maxEntries) {
-    newNumbers = newNumbers.slice(-this.maxEntries); // 最大エントリ数を超えたら古いものを削除
-  }
-  this.setItem(key, newNumbers.join(','), days);
+    return null;
 }
-  }
-  
-  const cacheManager = new CookieCacheManager(3);
-  
-  cacheManager.addCommaSeparatedNumbers('numbers', [productId], 5);
+
+function setArrayInCookie(cookieName, array, maxEntries, days) {
+    if (array.length > maxEntries) {
+        array = array.slice(array.length - maxEntries);
+    }
+    let arrayString = JSON.stringify(array);
+    setCookie(cookieName, arrayString, days);
+}
+
+function getArrayFromCookie(cookieName) {
+    let cookieValue = getCookie(cookieName);
+    return cookieValue ? JSON.parse(cookieValue) : [];
+}
+
+function pushToArrayInCookieNoDuplicates(cookieName, newEntry, maxEntries, days) {
+    let currentArray = getArrayFromCookie(cookieName);
+    if (!currentArray.includes(newEntry)) {
+        currentArray.unshift(newEntry);
+        if (currentArray.length > maxEntries) {
+            currentArray = currentArray.slice(currentArray.length - maxEntries);
+        }
+        setArrayInCookie(cookieName, currentArray, maxEntries, days);
+    }
+}
+
+pushToArrayInCookieNoDuplicates("least", `${productId}`, 5, 7); // "newEntry"を追加（重複なし）、最大5エントリ、7日間有効
+
+let retrievedArray = getArrayFromCookie("least");
+
+       
 
     </script>
 </body>
