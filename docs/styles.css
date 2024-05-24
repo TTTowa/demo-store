@@ -12,33 +12,32 @@ body {
 
 /* ヘッダー */
 header {
+    position: fixed;
     display: flex;
+    height: 50px;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
     background-color: #4CAF50;
     padding: 10px 20px;
     color: white;
+    z-index: 2;
+    top:0;
 }
 
 header .logo {
+    position: relative;
     font-size: 24px;
+    left: 30px;
 }
 
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 15px;
+header .logo a {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
 }
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-/* nav ul li a:hover {
-    color: #ddd;
-} */
 
 .header-icons {
     display: flex;
@@ -49,13 +48,15 @@ nav ul li a {
     padding: 5px;
 }
 
-.header-icons .icon {
+.header-icons .mypage {
+    aspect-ratio: 1;
+    height: 40px;
     background-color: white;
     color: #4CAF50;
-    padding: 5px 10px;
     text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 40px;
 }
 
 /* .header-icons .icon:hover {
@@ -104,11 +105,12 @@ nav ul li a {
 .product h3 {
     height: 35px;
     font-size: 16px;
-    margin: 10px 0;
+    line-height: 35px;
 }
-.product .star {
+
+.star {
     position: relative;
-    left: 10px;
+    left: 20px;
     height: 20px;
     width: 100px;
     background-image: url('./src/star.svg');
@@ -116,10 +118,12 @@ nav ul li a {
     background-size: cover;
     background-position: calc(-20px * (5 - var(--star))) 0;
 }
+
 .product p {
-    font-size: 16px;
-    color: #555;
+    font-size: 20px;
+    color: #e44242;
 }
+
 .product .pagelink {
     position: absolute;
     width: 100%;
@@ -142,14 +146,16 @@ footer {
     padding: 20px 0;
 }
 
-.footer-links, .social-media {
+.footer-links,
+.social-media {
     display: flex;
     justify-content: center;
     gap: 20px;
     margin-bottom: 10px;
 }
 
-.footer-links a, .social-media a {
+.footer-links a,
+.social-media a {
     color: white;
     text-decoration: none;
     transition: color 0.3s;
@@ -161,11 +167,323 @@ footer {
 
 /* レスポンシブデザイン */
 @media (max-width: 880px) {
-    nav ul, .header-icons .icon {
+
+    nav ul,
+    .header-icons .icon {
         display: none;
     }
 
     .header-icons input {
         display: block;
+        width: 50px;
+    }
+
+    .header-icons input:focus {
+        display: block;
+        width: 200px;
+        font-size: 16px;
     }
 }
+
+#pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#pagination-controls button {
+    width: 40px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 5px;
+    background-color: #007bff;
+    font-size: 30px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+#pagination-controls #page-info {
+    margin: 0 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+
+.container {
+    display: flex;
+    width: 100%;
+    min-height: 100%;
+    flex-wrap: nowrap;
+    overflow-y: auto;
+}
+
+#button-nav {
+    display: none;
+}
+
+.navi-label {
+    position: fixed;
+    background:
+        linear-gradient(white, white) no-repeat,
+        linear-gradient(white, white) no-repeat,
+        linear-gradient(white, white) no-repeat,
+        linear-gradient(white, white) no-repeat,
+        linear-gradient(black, black);
+    border-radius: 50%;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1em;
+    top: 7px;
+    left: 7px;
+    height: 36px;
+    width: 36px;
+    z-index: 9999;
+    background-position:
+        50% 50%,
+        50% 50%,
+        50% calc(50% - 0.375em),
+        50% calc(50% + 0.375em),
+        50% 50%;
+    background-size:
+        0.125em 0em,
+        1em 0.125em,
+        1em 0.125em,
+        1em 0.125em,
+        50% 50%;
+    transition:
+        background-position 0.4s,
+        background-size 0.4s,
+        transform 0.4s;
+}
+
+#button-nav:checked+.navi-label {
+    background-position:
+        50% 50%,
+        50% 50%,
+        50% 50%,
+        50% 50%,
+        50% 50%;
+    background-size:
+        0.125em 1em,
+        1em 0.125em,
+        0em 0.125em,
+        0em 0.125em,
+        50% 50%;
+    transform: rotate(225deg);
+}
+
+#button-nav:checked+.navi-label+.sidenav {
+    width: 210px;
+    transition: 0.3s ease-in-out;
+}
+
+
+#button-nav:not(:checked)+.navi-label+.sidenav {
+    width: 0px;
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+}
+
+
+.sidenav {
+    position: fixed;
+    background-color: #5b5b5b;
+    display: block;
+    width: 250px;
+    min-height: 100%;
+    z-index: 3;
+    overflow-x: hidden;
+    top: 0;
+
+    .title {
+        position: absolute;
+        color: #ffffff;
+        top: 6px;
+        left: 50px;
+        font-size: 24px;
+    }
+
+    .menu {
+        position: relative;
+        margin-top: 50px;
+        font-size: 16px;
+    }
+
+    .menu-item {
+        position: relative;
+        left: 50px;
+        margin-bottom: 10px;
+    }
+
+    .menu-item a {
+        text-decoration: none;
+        color: #ffffff;
+        font-size: 18px;
+        display: block;
+        margin-bottom: 10px;
+        border-bottom: solid 1px;
+    }
+
+    .menu-item a:hover {
+        color: #ff4500;
+        /* オレンジ色に変更 */
+    }
+
+}
+
+
+
+.swiper {
+    margin-top: 70px;
+    width: 90%;
+    max-width: 900px;
+    height: 200px;
+    border-radius: 2rem;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: linear-gradient(135deg, #1e90ff, #00c853);;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.swiper {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#sns {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    column-gap: 10px;
+    flex-wrap:nowrap;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+}
+
+
+#x {
+    background: url('./src/x.png');
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom: none;
+}
+
+#line {
+    background: url('./src/line.png');
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom: none;
+}
+
+#instagram {
+    background: url('./src/instagram.png');
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom: none;
+}
+
+#point{
+outline: solid 2px black;
+padding-left: 20px;
+left: 30px;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+background-color: #3f8d42;
+}
+
+#point div:first-child{
+    font-size: 20px;
+    color: white;
+}
+
+#point div:last-child{
+    position: relative;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    left: -20px;
+}
+.tab-bar {
+    position: relative;
+    display: flex;
+    margin-top: 20px;
+    flex-wrap: nowrap;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    width: 100%;
+    background: #333;
+    touch-action: cross-slide-x;
+  }
+  
+  .tab-button {
+    position: relative;
+    background-color: #f0f0f0; /* タブボタンの背景色 */
+    color: #333; /* タブボタンのテキスト色 */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px; /* タブボタンの間に余白を作成 */
+    cursor: pointer;
+    padding: 10px;
+    white-space: nowrap;
+    width: 600px;
+  }
+    label:has(>.tab-radio:checked){
+    background: #5a5b5d;
+    color: white;
+  }
+  .tab-bar input {
+    display: none;
+  }
+  
+  .tab-bar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .tab-bar::-webkit-scrollbar-track {
+    display: none;
+
+  }
+  
+  .tab-bar::-webkit-scrollbar-thumb {
+    display: none;
+
+  }
+  
+  .tab-bar::-webkit-scrollbar-thumb:hover {
+    display: none;
+
+  }
+
+
+  .category-text {
+    font-size: 0.6em;
+  }

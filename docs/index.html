@@ -5,56 +5,165 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOTOMIYA</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <link rel="stylesheet" href="styles.css?2">
 </head>
 
 <body>
     <header>
-        <div class="logo">MOTOMIYA</div>
-        <nav>
-            <ul>
-                <li class="home-link"><a href="#">ホーム</a></li>
-                <li><a href="#">商品一覧</a></li>
-                <li><a href="#">セール</a></li>
-                <li><a href="#">新商品</a></li>
-                <li><a href="#">お問い合わせ</a></li>
-            </ul>
-        </nav>
+        <div class="logo">MOTOMIYA<a href="./"></a></div>
         <div class="header-icons">
             <input type="text" placeholder="検索...">
-            <a href="#" class="icon">カート</a>
-            <a href="#" class="icon">アカウント</a>
+            <div class="mypage">Me</div>
         </div>
     </header>
+
+    <input type="checkbox" id="button-nav">
+    <label for="button-nav" class="navi-label"></label>
+    <div class="sidenav">
+        <div class="title">MOTOMIYA</div>
+        <div class="menu">
+            <div class="menu-item"><a href="profile.html">プロフィール</a></div>
+            <div class="menu-item" id="point"><div>保有ポイント</div><div>500p</div></div>
+            <div class="menu-item"><a href="cart.html">カート</a></div>
+            <div class="menu-item"><a href="recent.html">最近見たもの</a></div>
+            <div class="menu-item"><a href="qa.html">Q&A</a></div>
+            <div class="menu-item"><a href="ranking.html">ランキング</a></div>
+            <div class="menu-item"><a href="subscription.html">定期便</a></div>
+            <div class="menu-item"><a href="jobs.html">求人</a></div>
+            <div class="menu-item"><a href="about.html">私たちについて</a></div>
+            <div class="menu-item"><a href="access.html">アクセス数</a></div>
+            <div class="menu-item" id="sns">
+                <a href="https://twitter.com/share?url=https://tttowa.github.io/demo-store/&hashtags=demo&text=ストアのデモサイトです！" rel="nofollow" target="_blank" id="x"></a>
+                <a href="http://line.me/R/msg/text/?https://tttowa.github.io/demo-store/%0aストアのデモサイトです！" target="_blank" rel="nofollow noopener" id="line"></a>
+                <a href="https://www.instagram.com/ユーザー名?ref=badge" target="_blank" rel="nofollow noopener" id="instagram"></a>
+            </div>
+        </div>
+    </div>
+
     <main>
-        <section class="banner">
-            <h1>ようこそ！</h1>
-            <p>今すぐショッピングを始めましょう。</p>
-        </section>
-        <section class="products">
-            <h2>おすすめ商品</h2>
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="./src/camp01.jpg"></div>
+                <div class="swiper-slide"><img src="./src/camp02.jpg"></div>
+                <div class="swiper-slide"><img src="./src/camp03.jpg"></div>
+                <div class="swiper-slide"><img src="./src/camp04.jpg"></div>
+                <div class="swiper-slide"><img src="./src/camp05.jpg"></div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <div class="tab-bar">
+            <label for="tabAll" class="tab-button">
+                <input type="radio" id="tabAll" name="pro-tab" class="tab-radio" data-category="all" checked onchange="handleChange(this)">
+                すべて
+            </label>
+            
+            <label for="tab0" class="tab-button">
+                <input type="radio" id="tab0" name="pro-tab" class="tab-radio" data-category="0" onchange="handleChange(this)">
+                医薬品
+            </label>
+            
+            <label for="tab1" class="tab-button">
+                <input type="radio" id="tab1" name="pro-tab" class="tab-radio" data-category="1" onchange="handleChange(this)">
+                健康食品
+            </label>
+            
+            <label for="tab2" class="tab-button">
+                <input type="radio" id="tab2" name="pro-tab" class="tab-radio" data-category="2" onchange="handleChange(this)">
+                スキンケア
+            </label>
+            
+            <label for="tab3" class="tab-button">
+                <input type="radio" id="tab3" name="pro-tab" class="tab-radio" data-category="3" onchange="handleChange(this)">
+                ヘアケア
+            </label>
+            
+            <label for="tab4" class="tab-button">
+                <input type="radio" id="tab4" name="pro-tab" class="tab-radio" data-category="4" onchange="handleChange(this)">
+                ボディケア
+            </label>
+            
+            <label for="tab5" class="tab-button">
+                <input type="radio" id="tab5" name="pro-tab" class="tab-radio" data-category="5" onchange="handleChange(this)">
+                オーラルケア
+            </label>
+            
+            <label for="tab6" class="tab-button">
+                <input type="radio" id="tab6" name="pro-tab" class="tab-radio" data-category="6" onchange="handleChange(this)">
+                ベビーケア
+            </label>
+            
+            <label for="tab7" class="tab-button">
+                <input type="radio" id="tab7" name="pro-tab" class="tab-radio" data-category="7" onchange="handleChange(this)">
+                メイクアップ
+            </label>
+            
+            <label for="tab8" class="tab-button">
+                <input type="radio" id="tab8" name="pro-tab" class="tab-radio" data-category="8" onchange="handleChange(this)">
+                日用品
+            </label>
+            
+            <label for="tab9" class="tab-button">
+                <input type="radio" id="tab9" name="pro-tab" class="tab-radio" data-category="9" onchange="handleChange(this)">
+                医療用品
+            </label>
+            
+            <label for="tab10" class="tab-button">
+                <input type="radio" id="tab10" name="pro-tab" class="tab-radio" data-category="10" onchange="handleChange(this)">
+                ネイルケア
+            </label>
+            
+            <label for="tab11" class="tab-button">
+                <input type="radio" id="tab11" name="pro-tab" class="tab-radio" data-category="11" onchange="handleChange(this)">
+                フィットネス・スポーツ
+            </label>
+            
+            <label for="tab12" class="tab-button">
+                <input type="radio" id="tab12" name="pro-tab" class="tab-radio" data-category="12" onchange="handleChange(this)">
+                ペットケア
+            </label>
+            
+            <label for="tab13" class="tab-button">
+                <input type="radio" id="tab13" name="pro-tab" class="tab-radio" data-category="13" onchange="handleChange(this)">
+                高齢者ケア
+            </label>
+          </div>
+        <section class="products" id="mainProducts">
+            <h2 id="category-title">すべて</h2>
             <div class="product-list">
+            </div>
+            <div id="pagination-controls">
+                <button id="" onclick="paginator.goToPage(1);">&laquo;</button>
+                <button id="prev-page" onclick="paginator.previousPage();">&lsaquo;</button>
+                <span id="page-info"></span>
+                <button id="next-page" onclick="paginator.nextPage();">&rsaquo;</button>
+                <button id="" onclick="paginator.goToPage(paginator.getTotalPages());">&raquo;</button>
+
             </div>
         </section>
     </main>
     <footer>
         <div class="footer-links">
-            <a href="#">サイトマップ</a>
-            <a href="#">プライバシーポリシー</a>
-            <a href="#">利用規約</a>
-        </div>
-        <div class="social-media">
-            <a href="#">Twitter</a>
-            <a href="#">Facebook</a>
+            <p>tel: xxx-xxx-xxx</p>
+            <p>e-mail: xxxx.xxxx.xxx@xxx.xx.xx</p>
+            <p>address: xxx xxx xxx xxx</p>
         </div>
         <div class="disclaimer">
-            <p>このページに表示されているデモストアは、実際のストアやその所有者とは一切関係ありません。表示されている製品、サービス、価格、およびその他の情報は、架空のものであり、実際の取引や取引の意図を示すものではありません。このデモは、GitHub Pagesでの技術的な実演を目的としています。</p>
-            <p>The demo store displayed on this page is not affiliated with any actual store or its owners. The products, services, prices, and other information displayed are fictional and do not represent actual transactions or intentions to transact. This demo is intended for technical demonstration purposes on GitHub Pages. </p>
+            <p>このページに表示されているデモストアは、実際のストアやその所有者とは一切関係ありません。表示されている製品、サービス、価格、およびその他の情報は、架空のものであり、実際の取引や取引の意図を示すものではありません。このデモは、GitHub
+                Pagesでの技術的な実演を目的としています。</p>
+            <p>The demo store displayed on this page is not affiliated with any actual store or its owners. The
+                products, services, prices, and other information displayed are fictional and do not represent actual
+                transactions or intentions to transact. This demo is intended for technical demonstration purposes on
+                GitHub Pages. </p>
             <a href="disclaimer.html">免責事項</a>
         </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="product_data.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js?2"></script>
 </body>
 
 </html>

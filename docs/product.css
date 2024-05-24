@@ -1,5 +1,6 @@
 /* Product container */
 .product-container {
+    margin-top: 50px;
     display: flex;
     margin-bottom: 20px;
 }
@@ -17,6 +18,7 @@
 .product-details {
     flex: 0 0 70%; /* 70% of container width */
     padding-left: 20px;
+    padding-top: 20px;
 }
 
 .product-name {
@@ -95,4 +97,34 @@
 
 .related-products a:hover {
     text-decoration: underline;
+}
+
+.product-image {
+    flex: 1;
+}
+.product-details {
+    flex: 2;
+}
+
+
+@media screen and (max-width: 800px) {
+    .product-container {
+        display: contents;
+    }
+    .product-image {
+        position: relative;
+        margin-top: 50px;
+        text-align: center; /* 画像を中央寄せ */
+    }
+    .product-image img {
+        position: relative;
+    }
+    .product-details {
+        padding: 10px;
+    }
+}
+
+.star {
+    position: relative;
+    display: block;
 }

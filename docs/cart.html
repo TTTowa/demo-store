@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カート - MOTOMIYA</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .content-wrapper {
+            margin-top: 60px;
+        }
+
+        main {
+            flex: 1;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-content {
+            margin-bottom: 40px;
+        }
+
+        .cart-content h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+            text-transform: uppercase;
+            border-bottom: 2px solid #007bff;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .cart-table th,
+        .cart-table td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .cart-table th {
+            background-color: #f8f9fa;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .quantity-input {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .remove-btn {
+            background-color: #dc3545;
+            color: #ffffff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .remove-btn:hover {
+            background-color: #c82333;
+        }
+
+        .checkout-btn {
+            position: relative;
+            padding: 15px 30px;
+            background-color: #28a745;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+            font-size: 18px;
+            text-transform: uppercase;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .checkout-btn:hover {
+            background-color: #218838;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: #ffffff;
+            text-align: center;
+            padding: 15px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">MOTOMIYA<a href="./"></a></div>
+        <div class="header-icons">
+            <input type="text" placeholder="検索...">
+            <div class="mypage">Me</div>
+        </div>
+    </header>
+
+    <input type="checkbox" id="button-nav">
+    <label for="button-nav" class="navi-label"></label>
+    <div class="sidenav">
+        <div class="title">MOTOMIYA</div>
+        <div class="menu">
+            <div class="menu-item"><a href="profile.html">プロフィール</a></div>
+            <div class="menu-item" id="point"><div>保有ポイント</div><div>500p</div></div>
+            <div class="menu-item"><a href="cart.html">カート</a></div>
+            <div class="menu-item"><a href="recent.html">最近見たもの</a></div>
+            <div class="menu-item"><a href="qa.html">Q&A</a></div>
+            <div class="menu-item"><a href="ranking.html">ランキング</a></div>
+            <div class="menu-item"><a href="subscription.html">定期便</a></div>
+            <div class="menu-item"><a href="jobs.html">求人</a></div>
+            <div class="menu-item"><a href="about.html">私たちについて</a></div>
+            <div class="menu-item"><a href="access.html">アクセス数</a></div>
+            <div class="menu-item" id="sns">
+                <a href="https://twitter.com/share?url=https://tttowa.github.io/demo-store/&hashtags=demo&text=ストアのデモサイトです！" rel="nofollow" target="_blank" id="x"></a>
+                <a href="http://line.me/R/msg/text/?https://tttowa.github.io/demo-store/%0aストアのデモサイトです！" target="_blank" rel="nofollow noopener" id="line"></a>
+                <a href="https://www.instagram.com/ユーザー名?ref=badge" target="_blank" rel="nofollow noopener" id="instagram"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <main>
+            <section class="cart-content">
+                <h2>カート</h2>
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>商品</th>
+                            <th>価格</th>
+                            <th>数量</th>
+                            <th>小計</th>
+                            <th>削除</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>商品名 1</td>
+                            <td>¥1000</td>
+                            <td><input type="number" value="1" min="1" class="quantity-input"></td>
+                            <td>¥1000</td>
+                            <td><button class="remove-btn">削除</button></td>
+                        </tr>
+                        <tr>
+                            <td>商品名 2</td>
+                            <td>¥2000</td>
+                            <td><input type="number" value="1" min="1" class="quantity-input"></td>
+                            <td>¥2000</td>
+                            <td><button class="remove-btn">削除</button></td>
+                        </tr>
+                        <!-- 他の商品もここに追加 -->
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">合計</td>
+                            <td colspan="2">¥3000</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <button class="checkout-btn">購入手続き</button>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2024 MOTOMIYA. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
