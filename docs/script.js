@@ -321,7 +321,7 @@ function search(value) {
     }
     uncheckAll();
     let searchResults = searchByName(flatObjectData, value);
-    categoryTitle.textContent = 'search: '+value;
+    categoryTitle.textContent = 'search: '+value+` (${searchResults.length})`;
     paginator.reset(searchResults);
 }
 function uncheckAll() {
@@ -329,3 +329,6 @@ function uncheckAll() {
     const checkboxes = targetElement.querySelectorAll('input[type="radio"]');
     checkboxes.forEach(checkbox => checkbox.checked = false);
 }
+document.getElementById("ss").addEventListener("change", function() {
+    search(this.value);
+});
