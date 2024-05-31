@@ -97,6 +97,10 @@ productImageElement.onload = (function (loader, img) {
     };
 })(skeletonLoader, productImageElement);
 
+try {
+    document.title = productData.productName;
+} catch (error) {
+}
 
 productImageElement.src = productData.productImageSrc;
 names.textContent = productData.productName;
@@ -110,7 +114,6 @@ try {
 } catch (error) {
     document.cookie = "least=; path=/;";
 }
-
 
 
 const relatedCategory = {...product_data[category]};

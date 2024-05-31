@@ -42,8 +42,12 @@
 }
 
 .product-price {
-    font-size: 20px;
-    color: #c0392b; /* Red color for price */
+    font-size: 25px;
+    color: #c0392b;
+    margin-left: 20px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 8px;
 }
 
 .product-description {
@@ -54,7 +58,9 @@
 .product-rating {
     margin-top: 10px;
 }
-
+.product-star {
+    padding-top: 1rem;
+}
 .star {
     color: #f1c40f; /* Yellow color for stars */
 }
@@ -68,6 +74,7 @@
     margin-top: 10px;
     list-style-type: none;
     padding: 0;
+    margin-left: 20px;
 }
 
 .product-specs li {
@@ -76,9 +83,10 @@
 
 .buy-options {
     margin-top: 20px;
+    font-size: 18px;
 }
 
-.add-to-cart {
+#add-to-cart {
     background-color: #3498db; /* Blue color for add to cart button */
     color: #fff;
     padding: 10px 20px;
