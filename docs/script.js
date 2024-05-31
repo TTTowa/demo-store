@@ -186,7 +186,7 @@ try {
         const pageInfoLeast = document.getElementById('page-info-l');
         const topElementLeast = document.getElementById('leastProducts');
 
-        const paginator_least = new Paginator(leastData, 5, itemsContainerLeast, topElementLeast, pageInfoLeast);
+        const paginator_least = new Paginator(leastData, 30, itemsContainerLeast, topElementLeast, pageInfoLeast);
     }
     const inputField = document.getElementById("search-box");
 

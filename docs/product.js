@@ -106,7 +106,7 @@ categoryElement.textContent = productData.categoryDisplayName;
 relatedTitle.textContent = `(${productData.categoryDisplayName}) の関連商品`;
 
 try {
-    pushToArrayInCookieNoDuplicates("least", `${productId}`, 5, 7);
+    pushToArrayInCookieNoDuplicates("least", `${productId}`, 30, 7);
 } catch (error) {
     document.cookie = "least=; path=/;";
 }

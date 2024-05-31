@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOTOMIYA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="styles.css?2">
+    <meta name="theme-color" content="#4CAF50" />
+</head>
+
+<body>
+    <header>
+        <div class="logo">MOTOMIYA<a href="./"></a></div>
+        <div class="header-icons">
+            <input type="text" placeholder="検索..." id="search-box">
+            <div class="profile">Me<a href="profile.html?202405311035"></a></div>
+        </div>
+    </header>
+
+    <input type="checkbox" id="button-nav">
+    <label for="button-nav" class="navi-label"></label>
+    <div class="sidenav">
+        <div class="title">MOTOMIYA</div>
+        <div class="menu">
+            <div class="menu-item"><a href="profile.html?202405311035">プロフィール</a></div>
+            <div class="menu-item" id="point">
+                <div>保有ポイント</div>
+                <div>500p</div>
+            </div>
+            <div class="menu-item"><a href="cart.html?202405311035">カート</a></div>
+            <div class="menu-item"><a href="recent.html?202405311035">最近見たもの</a></div>
+            <div class="menu-item"><a href="qanda.html?202405311035">Q&A</a></div>
+            <div class="menu-item"><a href="ranking.html?202405311035">ランキング</a></div>
+            <div class="menu-item"><a href="#">定期便</a></div>
+            <div class="menu-item"><a href="#">求人</a></div>
+            <div class="menu-item"><a href="disclaimer.html?202405311035">私たちについて</a></div>
+            <div class="menu-item"><a href="#">アクセス数</a></div>
+            <div class="menu-item" id="sns">
+                <a href="https://twitter.com/share?url=https://tttowa.github.io/demo-store/&hashtags=demo&text=ストアのデモサイトです！"
+                    rel="nofollow" target="_blank" id="x"></a>
+                <a href="http://line.me/R/msg/text/?https://tttowa.github.io/demo-store/%0aストアのデモサイトです！" target="_blank"
+                    rel="nofollow noopener" id="line"></a>
+                <a href="https://www.instagram.com/ユーザー名?ref=badge" target="_blank" rel="nofollow noopener"
+                    id="instagram"></a>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section class="products" id="leastProducts">
+            <h2 class="category-title">最近見たもの</h2>
+            <div class="product-list">
+            </div>
+        </section>
+    </main>
+    <footer style="position: relative;">
+        <div class="footer-links">
+            <p>tel: xxx-xxx-xxx</p>
+            <p>e-mail: xxxx.xxxx.xxx@xxx.xx.xx</p>
+            <p>address: xxx xxx xxx xxx</p>
+        </div>
+        <div class="disclaimer">
+            <p>このページに表示されているデモストアは、実際のストアやその所有者とは一切関係ありません。表示されている製品、サービス、価格、およびその他の情報は、架空のものであり、実際の取引や取引の意図を示すものではありません。このデモは、GitHub
+                Pagesでの技術的な実演を目的としています。</p>
+            <p>The demo store displayed on this page is not affiliated with any actual store or its owners. The
+                products, services, prices, and other information displayed are fictional and do not represent actual
+                transactions or intentions to transact. This demo is intended for technical demonstration purposes on
+                GitHub Pages. </p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="product_data.js"></script>
+    <script src="module.js"></script>
+    <script>
+        function getCookie(name) {
+            let nameEQ = name + "=";
+            let ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+        function getArrayFromCookie(cookieName) {
+            let cookieValue = getCookie(cookieName);
+            return cookieValue ? JSON.parse(cookieValue) : [];
+        }
+
+        const productList = document.querySelector('.product-list');
+
+        const productManager = new ProductManager(flatObjectData, './img/min', 'webp', productList);
+
+        try {
+            const leastData = getArrayFromCookie("least");
+
+            if (leastData.length === 0) {
+                productList.innerHTML = '<p class="least-empty">存在しません</p>';
+            } else {
+                productManager.addProducts(leastData);
+
+            }
+            const inputField = document.getElementById("search-box");
+
+        } catch (error) {
+            document.cookie = "least=; path=/;";
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>

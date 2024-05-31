@@ -106,7 +106,7 @@
         }
         
 
-        class rankingProductManager extends ProductManager {
+        class RankingProductManager extends ProductManager {
             constructor(productData, mediaDir, mediaExt, itemsContainer) {
                 super(productData, mediaDir, mediaExt, itemsContainer);
             }
@@ -137,7 +137,7 @@
 
         const itemsContainer = document.querySelector('#ranking');
 
-        const productManager = new rankingProductManager(flatObjectData, './img/min', 'webp', itemsContainer);
+        const productManager = new RankingProductManager(flatObjectData, './img/min', 'webp', itemsContainer);
 
         productManager.addProducts(RandomRank.generateRandomRankProductInfo());
 
