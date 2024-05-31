@@ -115,7 +115,7 @@ try {
 
 const relatedCategory = {...product_data[category]};
 const relatedSubCategory = [...relatedCategory[subcategory]];
-relatedSubCategory.splice(relatedSubCategory.indexOf(productId), 1);
+relatedSubCategory.splice(relatedSubCategory.indexOf(parseInt(productId)), 1);
 delete relatedCategory[subcategory];
 
 const relatedItems = [...relatedSubCategory, ...Object.values(relatedCategory).flat()];
@@ -129,3 +129,9 @@ const productManager = new ProductManager(flatObjectData, './img', 'webp', produ
 
 const pageInfo = document.getElementById('page-info');
 const paginator = new Paginator(relatedItems, 12, productList, relatedTitle, pageInfo);
+
+const cart = new Cart();
+const quantity = document.getElementById('quantity');
+function cartAddItem() {
+    cart.addItem(productId, parseInt(quantity.value));
+}

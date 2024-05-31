@@ -7,94 +7,103 @@
     <title>カート - MOTOMIYA</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .content-wrapper {
-            margin-top: 60px;
-        }
 
-        main {
-            flex: 1;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
 
-        .cart-content {
-            margin-bottom: 40px;
-        }
+.cart-container {
+    max-width: 800px;
+    width: 84vw;
+    margin: 60px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-        .cart-content h2 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #333;
-            text-transform: uppercase;
-            border-bottom: 2px solid #007bff;
-            display: inline-block;
-            padding-bottom: 5px;
-        }
 
-        .cart-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
+#cart, #purchase-history {
+    margin-top: 30px;
+}
 
-        .cart-table th,
-        .cart-table td {
-            border: 1px solid #ddd;
-            padding: 15px;
-            text-align: center;
-        }
+#cart {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
 
-        .cart-table th {
-            background-color: #f8f9fa;
-            color: #333;
-            text-transform: uppercase;
-        }
+#cart-items, #history-items {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+}
 
-        .quantity-input {
-            width: 60px;
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            text-align: center;
-            font-size: 16px;
-        }
+.item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
 
-        .remove-btn {
-            background-color: #dc3545;
-            color: #ffffff;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            border-radius: 5px;
-            font-size: 14px;
-        }
+.item span {
+    flex: 1;
+}
 
-        .remove-btn:hover {
-            background-color: #c82333;
-        }
+#purchase-button, #add-item-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
-        .checkout-btn {
-            position: relative;
-            padding: 15px 30px;
-            background-color: #28a745;
-            color: #ffffff;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            border-radius: 5px;
-            font-size: 18px;
-            text-transform: uppercase;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+#purchase-button:hover, #add-item-button:hover {
+    background-color: #0056b3;
+}
 
-        .checkout-btn:hover {
-            background-color: #218838;
-        }
+input[type="text"], input[type="number"] {
+    margin-right: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input[type="text"]:focus, input[type="number"]:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* 購入履歴のスタイル */
+.history-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.history-item h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.history-item ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.history-item li {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.history-item li:last-child {
+    border-bottom: none;
+}
     </style>
     <meta name="theme-color" content="#4CAF50" />
 </head>
@@ -137,47 +146,20 @@
         </div>
     </div>
 
-    <div class="content-wrapper">
-        <main>
-            <section class="cart-content">
-                <h2>カート</h2>
-                <table class="cart-table">
-                    <thead>
-                        <tr>
-                            <th>商品</th>
-                            <th>価格</th>
-                            <th>数量</th>
-                            <th>小計</th>
-                            <th>削除</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>商品名 1</td>
-                            <td>¥1000</td>
-                            <td><input type="number" value="1" min="1" class="quantity-input"></td>
-                            <td>¥1000</td>
-                            <td><button class="remove-btn">削除</button></td>
-                        </tr>
-                        <tr>
-                            <td>商品名 2</td>
-                            <td>¥2000</td>
-                            <td><input type="number" value="1" min="1" class="quantity-input"></td>
-                            <td>¥2000</td>
-                            <td><button class="remove-btn">削除</button></td>
-                        </tr>
-                        <!-- 他の商品もここに追加 -->
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="3">合計</td>
-                            <td colspan="2">¥3000</td>
-                        </tr>
-                    </tfoot>
-                </table>
-                <button class="checkout-btn">購入手続き</button>
-            </section>
-        </main>
+    <main class="cart-container">
+        <h1>カート</h1>
+        <div id="cart">
+            <!-- <input type="text" id="item-id" placeholder="アイテムID">
+            <input type="number" id="item-quantity" placeholder="個数" min="1">
+            <button id="add-item-button">アイテムを追加</button> -->
+            <ul id="cart-items"></ul>
+            <button id="purchase-button">購入</button>
+        </div>
+        <div id="purchase-history">
+            <h2>購入履歴</h2>
+            <ul id="history-items"></ul>
+        </div>
+    </main>
         <footer>
             <div class="footer-links">
                 <p>tel: xxx-xxx-xxx</p>
@@ -187,6 +169,21 @@
             <p>2024 MOTOMIYA. 4 Group.</p>
         </footer>
     </div>
+    <script src="product_data.js"></script>
+    <script src="cart.js"></script>
+    <script>
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const cart = new Cart();
+    document.getElementById('purchase-button').addEventListener('click', () => {
+        cart.purchaseItems();
+        cart.displayHistory();
+    });
+
+    cart.displayHistory();
+});
+    </script>
 </body>
 
 </html>
