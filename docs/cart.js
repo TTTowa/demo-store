@@ -8,12 +8,12 @@ class Cart {
 
     loadCart() {
         const cart = localStorage.getItem(this.cartKey);
-        console.log('Loading cart:', cart); // デバッグ用
+        // console.log('Loading cart:', cart);
         return cart ? JSON.parse(cart) : [];
     }
 
     saveCart() {
-        console.log('Saving cart:', this.cartItems); // デバッグ用
+        // console.log('Saving cart:', this.cartItems);
         localStorage.setItem(this.cartKey, JSON.stringify(this.cartItems));
     }
 
@@ -51,7 +51,7 @@ class Cart {
             date: new Date().toISOString(),
             items: [...this.cartItems]
         };
-        console.log('Adding to history:', purchaseRecord); // デバッグ用
+        // console.log('Adding to history:', purchaseRecord);
         history.push(purchaseRecord);
         localStorage.setItem(this.historyKey, JSON.stringify(history));
         this.clearCart();
@@ -59,7 +59,7 @@ class Cart {
 
     loadHistory() {
         const history = localStorage.getItem(this.historyKey);
-        console.log('Loading history:', history); // デバッグ用
+        // console.log('Loading history:', history);
         return history ? JSON.parse(history) : [];
     }
 
@@ -70,9 +70,12 @@ class Cart {
         }
         cartItemsElement.innerHTML = '';
         this.cartItems.forEach(item => {
+            const obj = flatObjectData[item.id];
+
+
             const li = document.createElement('li');
             li.className = 'item';
-            li.innerHTML = `<span>ID: ${item.id}</span><span>Quantity: ${item.quantity}</span>`;
+            li.innerHTML = `<span>値段: ${obj.price}</span><span>個数: ${item.quantity}</span><span>名前: ${obj.name}</span>`;
             const removeButton = document.createElement('button');
             removeButton.textContent = 'Remove';
             removeButton.onclick = () => this.removeItem(item.id);
@@ -93,12 +96,15 @@ class Cart {
                 li.innerHTML = `
                     <h3>購入日: ${new Date(record.date).toLocaleString()}</h3>
                     <ul>
-                        ${record.items.map(item => `<li>ID: ${item.id}, Quantity: ${item.quantity}</li>`).join('')}
+                        ${record.items.map(item => {
+                            const obj = flatObjectData[item.id];
+                            return `<li>値段: ${obj.price}, 個数: ${item.quantity}, 名前: ${obj.name}</li>`;
+                        }).join('\n')}
                     </ul>
                 `;
                 historyItemsElement.appendChild(li);
             } else {
-                console.error('Invalid record format:', record); // デバッグ用
+                // console.error('Invalid record format:', record); // デバッグ用
             }
         });
     }
