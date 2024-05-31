@@ -69,10 +69,11 @@ class Cart {
             return;
         }
         cartItemsElement.innerHTML = '';
+        var total = 0;
         this.cartItems.forEach(item => {
             const obj = flatObjectData[item.id];
 
-
+            total+=obj.price * item.quantity;
             const li = document.createElement('li');
             li.className = 'item';
             li.innerHTML = `<span>値段: ${obj.price}</span><span>個数: ${item.quantity}</span><span>名前: ${obj.name}</span>`;
@@ -82,6 +83,7 @@ class Cart {
             li.appendChild(removeButton);
             cartItemsElement.appendChild(li);
         });
+        document.getElementById('cart-total').innerHTML = `<strong>合計金額</strong>: ${total}`;
     }
 
     displayHistory() {
@@ -91,6 +93,7 @@ class Cart {
 
         history.forEach(record => {
             if (record.items) { // record.itemsが存在するかチェック
+                var total = 0;
                 const li = document.createElement('li');
                 li.className = 'history-item';
                 li.innerHTML = `
@@ -98,8 +101,9 @@ class Cart {
                     <ul>
                         ${record.items.map(item => {
                             const obj = flatObjectData[item.id];
+                            total+=obj.price * item.quantity;
                             return `<li>値段: ${obj.price}, 個数: ${item.quantity}, 名前: ${obj.name}</li>`;
-                        }).join('\n')}
+                        }).join('\n')+`<strong>合計金額</strong>: ${total}`}
                     </ul>
                 `;
                 historyItemsElement.appendChild(li);
