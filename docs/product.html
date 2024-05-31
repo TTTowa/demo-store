@@ -7,6 +7,7 @@
     <title>Product Page</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="product.css">
+    <meta name="theme-color" content="#4CAF50" />
 </head>
 
 <body>
@@ -14,7 +15,7 @@
         <div class="logo">MOTOMIYA<a href="./"></a></div>
         <div class="header-icons">
             <input type="text" placeholder="検索...">
-            <div class="mypage">Me</div>
+            <div class="profile">Me<a href="profile.html"></a></div>
         </div>
     </header>
 
@@ -30,11 +31,11 @@
             </div>
             <div class="menu-item"><a href="cart.html">カート</a></div>
             <div class="menu-item"><a href="recent.html">最近見たもの</a></div>
-            <div class="menu-item"><a href="qa.html">Q&A</a></div>
+            <div class="menu-item"><a href="qanda.html">Q&A</a></div>
             <div class="menu-item"><a href="ranking.html">ランキング</a></div>
             <div class="menu-item"><a href="subscription.html">定期便</a></div>
             <div class="menu-item"><a href="jobs.html">求人</a></div>
-            <div class="menu-item"><a href="about.html">私たちについて</a></div>
+            <div class="menu-item"><a href="disclaimer.html">私たちについて</a></div>
             <div class="menu-item"><a href="access.html">アクセス数</a></div>
             <div class="menu-item" id="sns">
                 <a href="https://twitter.com/share?url=https://tttowa.github.io/demo-store/&hashtags=demo&text=ストアのデモサイトです！"
@@ -46,64 +47,81 @@
             </div>
         </div>
     </div>
-
-    <div class="product-container">
-        <div class="product-image">
-            <img src="product_image.jpg" alt="Product Image" id="product-image">
-        </div>
-        <div class="product-details">
-            <h1 class="product-name" id="product-name"></h1>
-            <p id="category"></p>
-            <p class="product-price" id="product-price"></p>
-            <p class="product-description" id="product-description">Explore our latest collection of trendy and stylish
-                products! From chic apparel to sleek accessories, our curated selection offers something for everyone.
-                Discover high-quality items that effortlessly blend fashion and functionality. Elevate your wardrobe and
-                express your unique style with our must-have pieces. Shop now and stay ahead of the fashion curve!</p>
-            <p class="product-star">評価</p>
-            <span class="star"></span>
-            <ul class="product-specs" id="product-specs">
-                <li>Color: xxxx</li>
-                <li>Size: xxxx</li>
-                <li>Weight: xxxx kg</li>
-                <!-- Add more specifications here -->
-            </ul>
-            <div class="buy-options">
-                <label for="quantity">個数:</label>
-                <select name="quantity" id="quantity">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-                <br>
-                <label for="subscription">定期便:</label>
-                <select name="subscription" id="subscription">
-                    <option value="-">Do not use subscription</option>
-                    <option value="1">Every month</option>
-                    <option value="2">Every 2 months</option>
-                    <option value="3">Every 3 months</option>
-                    <option value="4">Every 4 months</option>
-                    <option value="5">Every 5 months</option>
-                    <option value="6">Every 6 months</option>
-                </select>
-                <button class="add-to-cart">Add to Cart</button>
+    <main>
+        <div class="product-container">
+            <div class="product-image">
+                <div class="skeleton-loader"></div>
+                <img src="" alt="Product Image" id="product-image">
             </div>
 
+            <div class="product-details">
+                <h1 class="product-name" id="product-name"></h1>
+                <p id="category"></p>
+                <p class="product-price" id="product-price"></p>
+                <p class="product-description" id="product-description">Explore our latest collection of trendy and
+                    stylish
+                    products! From chic apparel to sleek accessories, our curated selection offers something for
+                    everyone.
+                    Discover high-quality items that effortlessly blend fashion and functionality. Elevate your wardrobe
+                    and
+                    express your unique style with our must-have pieces. Shop now and stay ahead of the fashion curve!
+                </p>
+                <p class="product-star">評価</p>
+                <span class="star"></span>
+                <ul class="product-specs" id="product-specs">
+                    <li>Color: xxxx</li>
+                    <li>Size: xxxx</li>
+                    <li>Weight: xxxx kg</li>
+                    <!-- Add more specifications here -->
+                </ul>
+                <div class="buy-options">
+                    <label for="quantity">個数:</label>
+                    <select name="quantity" id="quantity">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <br>
+                    <label for="subscription">定期便:</label>
+                    <select name="subscription" id="subscription">
+                        <option value="-">Do not use subscription</option>
+                        <option value="1">Every month</option>
+                        <option value="2">Every 2 months</option>
+                        <option value="3">Every 3 months</option>
+                        <option value="4">Every 4 months</option>
+                        <option value="5">Every 5 months</option>
+                        <option value="6">Every 6 months</option>
+                    </select>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+
+
+            </div>
+        </div>
+        <h2 class="category-title related">関連商品</h2>
+        <div class="product-list">
+        </div>
+        <div id="pagination-controls" style="padding-bottom: 3rem;">
+            <button id="" onclick="paginator.goToPage(1);">&laquo;</button>
+            <button id="prev-page" onclick="paginator.previousPage();">&lsaquo;</button>
+            <span id="page-info"></span>
+            <button id="next-page" onclick="paginator.nextPage();">&rsaquo;</button>
+            <button id="" onclick="paginator.goToPage(paginator.getTotalPages());">&raquo;</button>
 
         </div>
-    </div>
-
-    <div class="related-products">
-        <h2>関連商品</h2>
-        <ul>
-            <li><a href="#">Related Product 1</a></li>
-            <li><a href="#">Related Product 2</a></li>
-            <li><a href="#">Related Product 3</a></li>
-            <!-- Add more related products here -->
-        </ul>
-    </div>
+    </main>
+    <footer style="position: relative">
+        <div class="footer-links">
+            <p>tel: xxx-xxx-xxx</p>
+            <p>address: xxx xxx xxx xxx</p>
+            <p>e-mail: xxxx.xxxx.xxx@xxx.xx.xx</p>
+        </div>
+        <p>2024 MOTOMIYA. 4 Group.</p>
+    </footer>
     <script src="product_data.js"></script>
+    <script src="module.js"></script>
     <script src="product.js"></script>
 
 </body>

@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOTOMIYA</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
     <link rel="stylesheet" href="styles.css?2">
+    <meta name="theme-color" content="#4CAF50" />
 </head>
 
 <body>
     <header>
         <div class="logo">MOTOMIYA<a href="./"></a></div>
         <div class="header-icons">
-            <input type="text" placeholder="検索..." id="ss">
-            <div class="mypage">Me</div>
+            <input type="text" placeholder="検索..." id="search-box">
+            <div class="profile">Me<a href="profile.html"></a></div>
         </div>
     </header>
 
@@ -29,10 +29,10 @@
             <div class="menu-item"><a href="cart.html">カート</a></div>
             <div class="menu-item"><a href="recent.html">最近見たもの</a></div>
             <div class="menu-item"><a href="qanda.html">Q&A</a></div>
-            <div class="menu-item"><a href="#">ランキング</a></div>
+            <div class="menu-item"><a href="ranking.html">ランキング</a></div>
             <div class="menu-item"><a href="#">定期便</a></div>
             <div class="menu-item"><a href="#">求人</a></div>
-            <div class="menu-item"><a href="#">私たちについて</a></div>
+            <div class="menu-item"><a href="disclaimer.html">私たちについて</a></div>
             <div class="menu-item"><a href="#">アクセス数</a></div>
             <div class="menu-item" id="sns">
                 <a href="https://twitter.com/share?url=https://tttowa.github.io/demo-store/&hashtags=demo&text=ストアのデモサイトです！" rel="nofollow" target="_blank" id="x"></a>
@@ -56,7 +56,7 @@
             <div class="swiper-pagination"></div>
         </div>
         <section class="products" id="leastProducts">
-            <h2 id="category-title">最近見たもの</h2>
+            <h2 class="category-title">最近見たもの</h2>
             <div class="product-list-l">
             </div>
             <div id="pagination-controls" style="display: none;">
@@ -140,7 +140,7 @@
             </label>
           </div>
         <section class="products" id="mainProducts">
-            <h2 id="category-title">すべて</h2>
+            <h2 class="category-title">すべて</h2>
             <div class="product-list">
             </div>
             <div id="pagination-controls">
@@ -153,7 +153,7 @@
             </div>
         </section>
     </main>
-    <footer>
+    <footer style="position: relative;">
         <div class="footer-links">
             <p>tel: xxx-xxx-xxx</p>
             <p>e-mail: xxxx.xxxx.xxx@xxx.xx.xx</p>
@@ -166,11 +166,11 @@
                 products, services, prices, and other information displayed are fictional and do not represent actual
                 transactions or intentions to transact. This demo is intended for technical demonstration purposes on
                 GitHub Pages. </p>
-            <a href="disclaimer.html">免責事項</a>
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="product_data.js"></script>
+    <script src="module.js"></script>
     <script src="script.js?2"></script>
 </body>
 

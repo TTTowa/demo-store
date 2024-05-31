@@ -1,17 +1,32 @@
 /* Product container */
 .product-container {
-    margin-top: 50px;
     display: flex;
     margin-bottom: 20px;
+    padding: 2rem;
+    padding-top: 0;
 }
 
 /* Product image */
 .product-image {
-    flex: 0 0 30%; /* 30% of container width */
+    position: relative;
+    flex: 0 0 30%;
+    display: grid;
+    place-items: center;
+    border-radius: 1rem;
+}
+.skeleton-loader {
+    position: absolute;
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: #ccc;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 1rem;
 }
 
 .product-image img {
     max-width: 100%;
+    border-radius: 1rem;
 }
 
 /* Product details */
@@ -115,6 +130,7 @@
         position: relative;
         margin-top: 50px;
         text-align: center; /* 画像を中央寄せ */
+        padding: 1rem;
     }
     .product-image img {
         position: relative;

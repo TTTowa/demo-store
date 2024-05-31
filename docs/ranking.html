@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人気ランキング - MOTOMIYA</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#4CAF50" />
+</head>
+
+<body>
+    <header>
+        <div class="logo">MOTOMIYA<a href="./"></a></div>
+        <div class="header-icons">
+            <input type="text" placeholder="検索...">
+            <div class="profile">Me<a href="profile.html"></a></div>
+        </div>
+    </header>
+
+    <input type="checkbox" id="button-nav">
+    <label for="button-nav" class="navi-label"></label>
+    <div class="sidenav">
+        <div class="title">人気ランキング</div>
+        <div class="menu">
+            <div class="menu-item"><a href="profile.html">プロフィール</a></div>
+            <div class="menu-item" id="point">
+                <div>保有ポイント</div>
+                <div>500p</div>
+            </div>
+            <div class="menu-item"><a href="cart.html">カート</a></div>
+            <div class="menu-item"><a href="recent.html">最近見たもの</a></div>
+            <div class="menu-item"><a href="qanda.html">Q&A</a></div>
+            <div class="menu-item"><a href="ranking.html">ランキング</a></div>
+            <div class="menu-item"><a href="subscription.html">定期便</a></div>
+            <div class="menu-item"><a href="jobs.html">求人</a></div>
+            <div class="menu-item"><a href="disclaimer.html">私たちについて</a></div>
+            <div class="menu-item"><a href="access.html">アクセス数</a></div>
+            <div class="menu-item" id="sns">
+                <a href="https://twitter.com/share?url=https://tttowa.github.io/demo-store/&hashtags=demo&text=ストアのデモサイトです！"
+                    rel="nofollow" target="_blank" id="x"></a>
+                <a href="http://line.me/R/msg/text/?https://tttowa.github.io/demo-store/%0aストアのデモサイトです！" target="_blank"
+                    rel="nofollow noopener" id="line"></a>
+                <a href="https://www.instagram.com/ユーザー名?ref=badge" target="_blank" rel="nofollow noopener"
+                    id="instagram"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <main>
+            <section class="ranking" id="ranking">
+                <!-- 商品がここに動的に挿入されます -->
+            </section>
+        </main>
+        <footer>
+            <div class="footer-links">
+                <p>tel: xxx-xxx-xxx</p>
+                <p>address: xxx xxx xxx xxx</p>
+                <p>e-mail: xxxx.xxxx.xxx@xxx.xx.xx</p>
+            </div>
+            <p>2024 MOTOMIYA. 4 Group.</p>
+        </footer>
+    </div>
+    <script src="product_data.js"></script>
+    <script src="module.js"></script>
+    <script>
+
+        class RandomRank {
+            static x = 419469416;
+            static y = 962485954;
+            static z = 819619159;
+            static w = 798561187;
+            static generateW() {
+                const currentDate = new Date();
+                RandomRank.w = parseInt(`${currentDate.getFullYear()}${currentDate.getDate()}${currentDate.getDate()}${currentDate.getHours()}`);
+            }
+
+            static next() {
+                let t = RandomRank.x ^ (RandomRank.x << 11);
+                RandomRank.x = RandomRank.y; RandomRank.y = RandomRank.z; RandomRank.z = RandomRank.w;
+                return RandomRank.w = (RandomRank.w ^ (RandomRank.w >>> 19)) ^ (t ^ (t >>> 8));
+            }
+
+            static nextInt(min, max) {
+                const r = Math.abs(RandomRank.next());
+                return min + (r % (max + 1 - min));
+            }
+            static unique(min, max, count) {
+                const range = max - min + 1;
+                if (count > range) {
+                    throw new Error('Count exceeds the number of unique values in the range');
+                }
+                const numbers = Array.from({ length: range }, (_, i) => min + i);
+
+                for (let i = numbers.length - 1; i > 0; i--) {
+                    const j = RandomRank.nextInt(0, i);
+                    [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+                }
+
+                return numbers.slice(0, count);
+            }
+            static generateRandomRankProductInfo(entry = 5, seed = RandomRank.generateW()) {
+                return RandomRank.unique(0, dataCount - 1, entry);
+            }
+        }
+        
+
+        class rankingProductManager extends ProductManager {
+            constructor(productData, mediaDir, mediaExt, itemsContainer) {
+                super(productData, mediaDir, mediaExt, itemsContainer);
+            }
+            createRankElement(rank, ProductElement) {
+                const article = document.createElement('article');
+                article.classList.add('ranking-product');
+
+                const rankDiv = document.createElement('div');
+                rankDiv.classList.add('rank');
+                rankDiv.textContent = rank;
+                article.appendChild(rankDiv);
+                article.appendChild(ProductElement);
+
+                return article;
+            }
+
+            addProducts(productsToAdd, container = this.itemsContainer) {
+                const fragment = document.createDocumentFragment();
+                productsToAdd.forEach((id, index) => {
+                    fragment.appendChild(this.createRankElement(index+1, this.createProductElement(id)));
+                });
+                container.appendChild(fragment);
+            }
+        }
+
+        const dataCount = Object.keys(flatObjectData).length;
+
+
+        const itemsContainer = document.querySelector('#ranking');
+
+        const productManager = new rankingProductManager(flatObjectData, './img/min', 'webp', itemsContainer);
+
+        productManager.addProducts(RandomRank.generateRandomRankProductInfo());
+
+
+    </script>
+</body>
+
+</html>
