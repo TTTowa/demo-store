@@ -86,15 +86,22 @@
     font-size: 18px;
 }
 
-#add-to-cart {
+#go-cart, #add-to-cart {
     background-color: #3498db; /* Blue color for add to cart button */
     color: #fff;
     padding: 10px 20px;
     border: none;
     cursor: pointer;
     font-size: 16px;
+    width: 136px;
+    height: 44px;
+    text-decoration: none;
+    margin: 0;
 }
-
+#go-cart:link, #go-cart:visited ,#go-cart:hover ,#go-cart:active {
+    background-color: #33a556;
+    border-radius: 2rem;
+}
 /* Related products */
 .related-products {
     margin-top: 30px;

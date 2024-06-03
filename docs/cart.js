@@ -76,7 +76,7 @@ class Cart {
             total+=obj.price * item.quantity;
             const li = document.createElement('li');
             li.className = 'item';
-            li.innerHTML = `<span>値段: ${obj.price}</span><span>個数: ${item.quantity}</span><span>名前: ${obj.name}</span>`;
+            li.innerHTML = `<div>名前: ${obj.name}</div><div>値段: ${obj.price}</div><div>個数: ${item.quantity}</div>`;
             const removeButton = document.createElement('button');
             removeButton.textContent = 'Remove';
             removeButton.onclick = () => this.removeItem(item.id);
@@ -91,7 +91,7 @@ class Cart {
         const historyItemsElement = document.getElementById('history-items');
         historyItemsElement.innerHTML = '';
 
-        history.forEach(record => {
+        history.slice().reverse().forEach(record => {
             if (record.items) { // record.itemsが存在するかチェック
                 var total = 0;
                 const li = document.createElement('li');
@@ -102,7 +102,7 @@ class Cart {
                         ${record.items.map(item => {
                             const obj = flatObjectData[item.id];
                             total+=obj.price * item.quantity;
-                            return `<li>値段: ${obj.price}, 個数: ${item.quantity}, 名前: ${obj.name}</li>`;
+                            return `<li>名前: ${obj.name}<br>値段: ${obj.price}<br>個数: ${item.quantity}</li>`;
                         }).join('\n')+`<strong>合計金額</strong>: ${total}`}
                     </ul>
                 `;

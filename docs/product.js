@@ -20,7 +20,7 @@ function getProductDataFromURL(url) {
         productId: productId,
         productImageSrc: `./img/min/${productData.category}-${productData.subcategory}-${productId}min.webp`,
         productName: productData.name,
-        productPrice: `¥${productData.price}`,
+        productPrice: productData.price,
         starStyle: `--star: ${productData.star}`,
         categoryDisplayName: `${categoryInfo.display_name} > ${categoryInfo.sub[productData.subcategory]}`
     };
@@ -104,7 +104,7 @@ try {
 
 productImageElement.src = productData.productImageSrc;
 names.textContent = productData.productName;
-price.textContent = productData.productPrice;
+price.textContent = `¥${productData.productPrice}`;
 star.style.setProperty("starStyle", productData.starStyle);
 categoryElement.textContent = productData.categoryDisplayName;
 relatedTitle.textContent = `(${productData.categoryDisplayName}) の関連商品`;
@@ -136,5 +136,7 @@ const paginator = new Paginator(relatedItems, 12, productList, relatedTitle, pag
 const cart = new Cart();
 const quantity = document.getElementById('quantity');
 function cartAddItem() {
-    cart.addItem(productId, parseInt(quantity.value));
+    if (window.confirm(`名前: ${productData.productName}\n個数: ${quantity.value}\n値段: ${(productData.productPrice * parseInt(quantity.value))}\nをカートに追加しますか？`)) {
+        cart.addItem(productId, parseInt(quantity.value));
+    }
 }
